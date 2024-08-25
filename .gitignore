@@ -1,0 +1,9 @@
+# igonre project folders
+.vs/
+/obj/
+/bin/
+
+#ignore solution and project files.
+
+*.csproj
+*.sln
