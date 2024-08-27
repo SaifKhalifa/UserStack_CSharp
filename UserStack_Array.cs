@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace UserStack
 {
     internal class UserStack_Array<T>
@@ -12,6 +7,9 @@ namespace UserStack
         static int maxSize;
         int top;
         T[] stack;
+        //error msgs
+        readonly string emptyMsg = "\aStack is empty!, push some values first.";
+        readonly string fullMsg = "\aStack is FULL!, pop some values first.";
 
         //constructors.
         public UserStack_Array(int size = 5)
@@ -35,7 +33,7 @@ namespace UserStack
         {
             if (IsFull())
             {
-                Console.WriteLine("\aStack is FULL!, pop some values first.");
+                Console.WriteLine(fullMsg);
             }
             else
             {
@@ -48,7 +46,7 @@ namespace UserStack
         {
             if(IsEmpty())
             {
-                Console.WriteLine("\aStack is EMPTY!, push some values first.");
+                Console.WriteLine(emptyMsg);
                 return default;
             }
             else
@@ -64,7 +62,7 @@ namespace UserStack
         {
             if (IsEmpty())
             {
-                Console.WriteLine("\aStack is EMPTY!, push some values first.");
+                Console.WriteLine(emptyMsg);
                 return;
             }
 
@@ -79,7 +77,7 @@ namespace UserStack
         {
             if (IsEmpty())
             {
-                Console.WriteLine("\aStack is EMPTY!, push some values first.");
+                Console.WriteLine(emptyMsg);
                 return default;
             }
             else
@@ -90,7 +88,13 @@ namespace UserStack
         {
             if (!IsEmpty())
             {
-                top = -1;
+                for(int i = 0; i <= top; i++)
+                {
+                    stack[i] = default;
+                }
+                //Array.Clear(stack);
+                
+                top = -1;             
                 return true;
             }
             else
