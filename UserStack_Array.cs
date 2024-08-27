@@ -67,7 +67,7 @@ namespace UserStack
             }
 
             Console.WriteLine("\nItems in stack:");
-            for (int i = 0; i <= top; i++)
+            for (int i = top; i >= 0; i--)
             {
                 Console.WriteLine(stack[i]);
             }
