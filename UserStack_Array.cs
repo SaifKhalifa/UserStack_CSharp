@@ -4,7 +4,7 @@ namespace UserStack
     internal class UserStack_Array<T>
     {
         //Variable Declarations.
-        static int maxSize;
+        int maxSize;
         int top;
         T[] stack;
         //error msgs
@@ -26,19 +26,22 @@ namespace UserStack
         }
         internal bool IsFull()
         {
-            return top >= maxSize;
+            return top >= maxSize - 1;
         }
 
-        internal void Push(T value)
+        internal bool Push(T value)
         {
-            if (IsFull())
-            {
-                Console.WriteLine(fullMsg);
-            }
-            else
+            if (!IsFull())
             {
                 top++;
                 stack[top] = value;
+                Console.WriteLine(value + " pushed on top of the stack!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine(fullMsg);
+                return false;
             }
         }
 
