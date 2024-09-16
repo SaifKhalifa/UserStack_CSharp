@@ -1,4 +1,5 @@
 ﻿using UserStack;
+
 internal class Program
 {
     internal static void PrintMenu()
@@ -18,10 +19,11 @@ internal class Program
         Console.WriteLine("=========================================");
         Console.Write("Enter your choice [1-5] or [0] to exit: ");
     }
+
     private static void Main(string[] args)
     {
         bool exit = false;
-        UserStack_Array stack = new UserStack_Array(3);        
+        UserStack_Linked stack = new UserStack_Linked(); // Use the new UserStack_Linked implementation
 
         while (!exit)
         {
@@ -52,17 +54,25 @@ internal class Program
                     }
                     else
                     {
-                        stack.Push(value); //string
+                        stack.Push(value); // Assume it's a string if none of the other types match
                     }
 
                     break;
 
                 case "2":
-                    stack.Pop();
+                    var poppedValue = stack.Pop();
+                    if (poppedValue != null)
+                    {
+                        Console.WriteLine("Popped value: " + poppedValue);
+                    }
                     break;
 
                 case "3":
-                    stack.Peak();
+                    var topValue = stack.Peak();
+                    if (topValue != null)
+                    {
+                        Console.WriteLine("Top value: " + topValue);
+                    }
                     break;
 
                 case "4":
@@ -70,7 +80,11 @@ internal class Program
                     break;
 
                 case "5":
-                    stack.Clear();
+                    bool cleared = stack.Clear();
+                    if (cleared)
+                    {
+                        Console.WriteLine("Stack cleared.");
+                    }
                     break;
 
                 case "0":
@@ -79,8 +93,7 @@ internal class Program
                     break;
 
                 default:
-                    //Console.Clear();
-                    Console.WriteLine("\aInvalid option!. Please enter a number between 1 and 5 or 0 to exit the progam.");                    
+                    Console.WriteLine("\aInvalid option! Please enter a number between 1 and 5 or 0 to exit the program.");
                     break;
             }
 
