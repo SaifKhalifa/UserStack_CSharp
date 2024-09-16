@@ -4,13 +4,16 @@
     {
         public object data;
         public Node nextNode;
+        public Type dataType; // To store the type of the data
 
-        public Node(object dataValue) 
+        public Node(object dataValue)
         {
             data = dataValue;
+            dataType = dataValue.GetType();
             nextNode = null;
         }
     }
+
     internal class UserStack_Linked
     {
         //Variable Declarations.
@@ -75,7 +78,7 @@
             Node current = top;
             while (current != null)
             {
-                Console.WriteLine("Value: " + current.data + "\tType: " + current.data.GetType());
+                Console.WriteLine("Value: " + current.data + "\tType: " + current.dataType);
                 current = current.nextNode;
             }
         }
