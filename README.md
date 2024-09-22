@@ -1,6 +1,6 @@
 # UserQueue_CSharp
 `UserQueue_Array` is a generic queue implementation in C# that supports various data types.
-This queue is implemented using an array and provides basic queue operations such as `Enqueue`, `Dequeue`, `Peak`, and `Print`.
+This queue is implemented using a `Linked List` and provides basic queue operations such as `Enqueue`, `Dequeue`, `Peak`, and `Print`.
 
 *Keep in mind that this is designed for educational purposes and to demonstrate queue operations in C#.*
 
