@@ -1,21 +1,21 @@
-﻿using UserStack;
+﻿using UserStack_Queue;
 
-internal class Program
+internal class Program_Queue
 {
     internal static void PrintMenu()
     {
         Console.Clear();
 
         Console.WriteLine("=========================================");
-        Console.WriteLine("            Stack Operations Menu        ");
+        Console.WriteLine("            Queue Operations Menu        ");
         Console.WriteLine("=========================================");
         Console.WriteLine("Please choose an option:");
-        Console.WriteLine("[1] Push - Stores an object on top of the stack");
-        Console.WriteLine("[2] Pop  - Remove the top element from the stack");
-        Console.WriteLine("[3] Peek - View the top element of the stack");
-        Console.WriteLine("[4] Print- Display all elements in the stack");
-        Console.WriteLine("[5] Clear- Remove all elements from the stack");
-        Console.WriteLine("[0] Exit - Exit the application");
+        Console.WriteLine("[1] Enqueue - Add an object to the rear of the queue");
+        Console.WriteLine("[2] Dequeue - Remove the front element from the queue");
+        Console.WriteLine("[3] Peak    - View the front element of the queue");
+        Console.WriteLine("[4] Print   - Display all elements in the queue");
+        Console.WriteLine("[5] Clear   - Remove all elements from the queue");
+        Console.WriteLine("[0] Exit    - Exit the application");
         Console.WriteLine("=========================================");
         Console.Write("Enter your choice [1-5] or [0] to exit: ");
     }
@@ -23,7 +23,7 @@ internal class Program
     private static void Main(string[] args)
     {
         bool exit = false;
-        UserStack_Linked stack = new UserStack_Linked(); // Use the new UserStack_Linked implementation
+        UserQueue_Linked queue = new UserQueue_Linked(); // Use the new UserQueue_Linked implementation
 
         while (!exit)
         {
@@ -33,57 +33,57 @@ internal class Program
             switch (choice)
             {
                 case "1":
-                    Console.Write("Enter value to push: ");
+                    Console.Write("Enter value to enqueue: ");
                     var value = Console.ReadLine();
 
                     if (int.TryParse(value, out int intValue))
                     {
-                        stack.Push(intValue);
+                        queue.Enqueue(intValue);
                     }
                     else if (double.TryParse(value, out double doubleResult))
                     {
-                        stack.Push(doubleResult);
+                        queue.Enqueue(doubleResult);
                     }
                     else if (char.TryParse(value, out char charResult))
                     {
-                        stack.Push(charResult);
+                        queue.Enqueue(charResult);
                     }
                     else if (bool.TryParse(value, out bool boolResult))
                     {
-                        stack.Push(boolResult);
+                        queue.Enqueue(boolResult);
                     }
                     else
                     {
-                        stack.Push(value); // Assume it's a string if none of the other types match
+                        queue.Enqueue(value); // Assume it's a string if none of the other types match
                     }
 
                     break;
 
                 case "2":
-                    var poppedValue = stack.Pop();
-                    if (poppedValue != null)
+                    var dequeuedValue = queue.Dequeue();
+                    if (dequeuedValue != null)
                     {
-                        Console.WriteLine("Popped value: " + poppedValue);
+                        Console.WriteLine("Dequeued value: " + dequeuedValue);
                     }
                     break;
 
                 case "3":
-                    var topValue = stack.Peak();
-                    if (topValue != null)
+                    var frontValue = queue.Peak();
+                    if (frontValue != null)
                     {
-                        Console.WriteLine("Top value: " + topValue);
+                        Console.WriteLine("Front value: " + frontValue);
                     }
                     break;
 
                 case "4":
-                    stack.Print();
+                    queue.Print();
                     break;
 
                 case "5":
-                    bool cleared = stack.Clear();
+                    bool cleared = queue.Clear();
                     if (cleared)
                     {
-                        Console.WriteLine("Stack cleared.");
+                        Console.WriteLine("Queue cleared.");
                     }
                     break;
 

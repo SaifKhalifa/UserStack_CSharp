@@ -1,12 +1,14 @@
 ﻿using System;
+
 namespace UserStack
 {
-    internal class UserStack_Array<T>
+    internal class UserStack_Array
     {
         //Variable Declarations.
         int maxSize;
         int top;
-        T[] stack;
+        object[] stack;
+
         //error msgs
         readonly string emptyMsg = "\aStack is empty!, push some values first.";
         readonly string fullMsg = "\aStack is FULL!, pop some values first.";
@@ -15,7 +17,7 @@ namespace UserStack
         public UserStack_Array(int size = 5)
         {
             maxSize = size;
-            stack = new T[maxSize];
+            stack = new object[maxSize];
             top = -1;
         }
 
@@ -29,7 +31,7 @@ namespace UserStack
             return top >= maxSize - 1;
         }
 
-        internal bool Push(T value)
+        internal bool Push(object value)
         {
             if (!IsFull())
             {
@@ -45,18 +47,17 @@ namespace UserStack
             }
         }
 
-        internal T Pop() 
+        internal object Pop()
         {
-            if(IsEmpty())
+            if (IsEmpty())
             {
                 Console.WriteLine(emptyMsg);
                 return default;
             }
             else
-            {               
-                T value = stack[top];
+            {
+                object value = stack[top];
                 top--;
-                //Console.WriteLine("Popped value = " + value);
                 return value;
             }
         }
@@ -72,11 +73,11 @@ namespace UserStack
             Console.WriteLine("\nItems in stack:");
             for (int i = top; i >= 0; i--)
             {
-                Console.WriteLine(stack[i]);
+                Console.WriteLine("Value: " + stack[i] + "\tType: " + stack[i].GetType());
             }
         }
 
-        internal T Peak() 
+        internal object Peak()
         {
             if (IsEmpty())
             {
@@ -91,13 +92,11 @@ namespace UserStack
         {
             if (!IsEmpty())
             {
-                for(int i = 0; i <= top; i++)
+                for (int i = 0; i <= top; i++)
                 {
                     stack[i] = default;
                 }
-                //Array.Clear(stack);
-                
-                top = -1;             
+                top = -1;
                 return true;
             }
             else
